@@ -80,13 +80,9 @@ searchcity.addEventListener("submit", updateCity);
 function showTemp(response) {
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("#temperature");
-  let cityInput = document.querySelector("#cityFormSearch");
-  let searchCity = document.querySelector("#cityFormSearch").value;
-  let changeCity = searchCity;
-  cityInput.innerHTML = changeCity;
-
+  let displayCity = document.querySelector("#userLocation");
+  displayCity.innerHTML = response.data.name;
   temperatureElement.innerHTML = `${temperature}`;
-
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#windSpeed").innerHTML = Math.round(
     response.data.wind.speed
@@ -107,4 +103,4 @@ function currentLocation(event) {
   navigator.geolocation.getCurrentPosition(currentPosition);
 }
 let currentLocationButton = document.querySelector("#current-location-button");
-currentLocationButton.addEventListener("submit", currentLocation);
+currentLocationButton.addEventListener("click", currentLocation);
